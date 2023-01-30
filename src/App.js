@@ -57,7 +57,7 @@ function Loader() {
 }
 
 function Header({ showForm, setShowForm }) {
-  const appTitle = 'Today I Learned';
+  const appTitle = 'The Source Hub';
 
   return (
     <header className='header'>
@@ -70,7 +70,7 @@ function Header({ showForm, setShowForm }) {
         className='btn btn-large btn-open'
         onClick={() => setShowForm((show) => !show)}
       >
-        {showForm ? 'Close' : 'Share a fact'}
+        {showForm ? 'Close' : 'Upload a Source'}
       </button>
     </header>
   );
@@ -141,6 +141,9 @@ function NewFactForm({ setFacts, setShowForm }) {
 
       // 6. Close the form
       setShowForm(false);
+    }
+    else {
+      alert("Please enter proper data!");
     }
   }
 
@@ -213,7 +216,7 @@ function FactList({ facts, setFacts }) {
   if (facts.length === 0)
     return (
       <p className='message'>
-        No facts for this category yet! Create the first one ✌️
+        No uploads yet.
       </p>
     );
 
@@ -224,7 +227,7 @@ function FactList({ facts, setFacts }) {
           <Fact key={fact.id} fact={fact} setFacts={setFacts} />
         ))}
       </ul>
-      <p>There are {facts.length} facts in the database. Add your own!</p>
+      <p>There {(facts.length > 1 && facts.length !== 0) ? `are ${facts.length} sources` : `is ${facts.length} source`}  in this category.</p>
     </section>
   );
 }
